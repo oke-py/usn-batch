@@ -4,15 +4,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strings"
+
+	"github.com/oke-py/usn/usn/feed"
 
 	"github.com/PuerkitoBio/goquery"
 )
-
-func extractUsnTitle(s string) string {
-	tmp := strings.Replace(s, "<![CDATA[", "", -1)
-	return strings.Split(tmp, ":")[0]
-}
 
 func main() {
 	res, err := http.Get("https://usn.ubuntu.com/atom.xml")
@@ -28,7 +24,7 @@ func main() {
 		log.Fatal(err)
 	}
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
-		usn := extractUsnTitle(s.Find("title").Text())
+		usn := feed.ExtractUsnTitle(s.Find("title").Text())
 		fmt.Println(usn)
 
 		s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {
