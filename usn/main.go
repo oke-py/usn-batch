@@ -24,8 +24,11 @@ func main() {
 		log.Fatal(err)
 	}
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
-		usn := feed.ExtractUsnTitle(s.Find("title").Text())
-		fmt.Println(usn)
+		notice := &feed.Notice{
+			ID:  feed.GetID(s),
+			Pkg: feed.GetPackageName(s),
+		}
+		fmt.Println(notice)
 
 		s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {
 			os := s2.Text()

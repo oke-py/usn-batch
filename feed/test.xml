@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ubuntu security notices</title>
+  <link href="https://usn.ubuntu.com/atom.xml" rel="self"/>
+  <link href="https://usn.ubuntu.com/"/>
+  <updated>2019-02-22T08:08:13+00:00</updated>
+  <id>https://usn.ubuntu.com/</id>
+  <generator>Hugo -- gohugo.io</generator>
+  <entry>
+    <title type="html"><![CDATA[USN-3893-1: Bind vulnerabilities]]></title>
+    <link href="https://usn.ubuntu.com/3893-1/"/>
+    <id>https://usn.ubuntu.com/3893-1/</id>
+    <author>
+      <name>Ubuntu Security Team</name>
+    </author>
+    <published>2019-02-22T08:08:13+00:00</published>
+    <updated>2019-02-22T08:08:13+00:00</updated>
+    <content type="html"><![CDATA[
+
+<h2 id="bind9-vulnerabilities">bind9 vulnerabilities</h2>
+
+<p>A security issue affects these releases of Ubuntu and its derivatives:</p>
+
+<ul>
+<li>Ubuntu 18.10</li>
+<li>Ubuntu 18.04 LTS</li>
+<li>Ubuntu 16.04 LTS</li>
+<li>Ubuntu 14.04 LTS</li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>Several security issues were fixed in Bind.</p>
+
+<h3 id="software-description">Software Description</h3>
+
+<ul>
+<li>bind9 - Internet Domain Name Server</li>
+</ul>
+
+<h3 id="details">Details</h3>
+
+<p>Toshifumi Sakaguchi discovered that Bind incorrectly handled memory. A
+remote attacker could possibly use this issue to cause Bind to consume
+resources, leading to a denial of service. This issue only affected Ubuntu
+18.04 LTS and Ubuntu 18.10. (CVE-2018-5744)</p>
+
+<p>It was discovered that Bind incorrectly handled certain trust anchors when
+used with the &quot;managed-keys&quot; feature. A remote attacker could possibly use
+this issue to cause Bind to crash, resulting in a denial of service.
+(CVE-2018-5745)</p>
+
+<p>It was discovered that Bind incorrectly handled certain controls for zone
+transfers, contrary to expectations. (CVE-2019-6465)</p>
+
+<h2 id="update-instructions">Update instructions</h2>
+
+<p>The problem can be corrected by updating your system to the following package versions:</p>
+
+<dl>
+<dt>Ubuntu 18.10</dt>
+<dd><a href="https://launchpad.net/ubuntu/+source/bind9">bind9</a> - <a href="https://launchpad.net/ubuntu/+source/bind9/1:9.11.4+dfsg-3ubuntu5.1">1:9.11.4+dfsg-3ubuntu5.1</a></dd>
+<dt>Ubuntu 18.04 LTS</dt>
+<dd><a href="https://launchpad.net/ubuntu/+source/bind9">bind9</a> - <a href="https://launchpad.net/ubuntu/+source/bind9/1:9.11.3+dfsg-1ubuntu1.5">1:9.11.3+dfsg-1ubuntu1.5</a></dd>
+<dt>Ubuntu 16.04 LTS</dt>
+<dd><a href="https://launchpad.net/ubuntu/+source/bind9">bind9</a> - <a href="https://launchpad.net/ubuntu/+source/bind9/1:9.10.3.dfsg.P4-8ubuntu1.12">1:9.10.3.dfsg.P4-8ubuntu1.12</a></dd>
+<dt>Ubuntu 14.04 LTS</dt>
+<dd><a href="https://launchpad.net/ubuntu/+source/bind9">bind9</a> - <a href="https://launchpad.net/ubuntu/+source/bind9/1:9.9.5.dfsg-3ubuntu0.19">1:9.9.5.dfsg-3ubuntu0.19</a></dd>
+</dl>
+
+<p>To update your system, please follow these instructions: <a href="https://wiki.ubuntu.com/Security/Upgrades">https://wiki.ubuntu.com/Security/Upgrades</a>.</p>
+
+<p>In general, a standard system update will make all the necessary changes.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-2018-5744">CVE-2018-5744</a></li>
+<li><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-2018-5745">CVE-2018-5745</a></li>
+<li><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-2019-6465">CVE-2019-6465</a></li>
+</ul>
+]]></content>
+  </entry>
+</feed>
