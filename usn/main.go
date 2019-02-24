@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/oke-py/usn/usn/feed"
+	"github.com/oke-py/usn/feed"
 
 	"github.com/PuerkitoBio/goquery"
 )
