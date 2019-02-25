@@ -25,16 +25,17 @@ func main() {
 	}
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
 		notice := &feed.Notice{
-			ID:  feed.GetID(s),
-			Pkg: feed.GetPackageName(s),
+			ID:   feed.GetID(s),
+			Pkg:  feed.GetPackageName(s),
+			CVEs: feed.GetCVEs(s),
 		}
 		fmt.Println(notice)
 
-		s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {
-			os := s2.Text()
-			pkg := s2.Next().Find("a").First().Text()
-			ver := s2.Next().Find("a").Last().Text()
-			fmt.Printf("%v : %v-%v\n", os, pkg, ver)
-		})
+		// s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {
+		// 	os := s2.Text()
+		// 	pkg := s2.Next().Find("a").First().Text()
+		// 	ver := s2.Next().Find("a").Last().Text()
+		// 	fmt.Printf("%v : %v-%v\n", os, pkg, ver)
+		// })
 	})
 }
