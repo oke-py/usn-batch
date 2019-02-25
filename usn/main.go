@@ -29,10 +29,10 @@ func main() {
 			Pkg:  feed.GetPackageName(s),
 			CVEs: feed.GetCVEs(s),
 		}
-		fmt.Println(notice)
 		for _, cve := range notice.CVEs {
-			fmt.Printf("%v : %v\n", cve, feed.GetPriority(cve))
+			notice.Priority = feed.GetHigherPriority(notice.Priority, feed.GetPriority(cve))
 		}
+		fmt.Println(notice)
 
 		// s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {
 		// 	os := s2.Text()

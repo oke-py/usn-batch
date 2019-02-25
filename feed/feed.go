@@ -8,9 +8,10 @@ import (
 
 // Notice is a class of each USN
 type Notice struct {
-	ID   string
-	Pkg  string
-	CVEs []string
+	ID       string
+	Pkg      string
+	CVEs     []string
+	Priority string
 }
 
 // ExtractUsnTitle is a function to get USN-XXXX-X string.

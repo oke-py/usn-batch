@@ -22,3 +22,15 @@ func TestGetPriorityFromDoc(t *testing.T) {
 		t.Fatal("failed test")
 	}
 }
+
+func TestGetHigherPriority(t *testing.T) {
+	if GetHigherPriority("", "Low") != "Low" {
+		t.Fatal("failed test")
+	}
+	if GetHigherPriority("Medium", "Low") != "Medium" {
+		t.Fatal("failed test")
+	}
+	if GetHigherPriority("High", "Critical") != "Critical" {
+		t.Fatal("failed test")
+	}
+}

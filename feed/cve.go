@@ -36,3 +36,26 @@ func GetPriorityFromReader(r io.Reader) string {
 	}
 	return doc.Find("#body-card .card-body .item .field").First().Next().Find("a").Text()
 }
+
+// GetHigherPriority returns a higher priority.
+// https://people.canonical.com/~ubuntu-security/cve/priority.html
+func GetHigherPriority(p1 string, p2 string) string {
+	if p1 == "" {
+		return p2
+	}
+
+	if p1 == "Critical" || p2 == "Critical" {
+		return "Critical"
+	}
+	if p1 == "High" || p2 == "High" {
+		return "High"
+	}
+	if p1 == "Medium" || p2 == "Medium" {
+		return "Medium"
+	}
+	if p1 == "Low" || p2 == "Low" {
+		return "Low"
+	}
+
+	return "Unknown"
+}
