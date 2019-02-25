@@ -1,16 +1,20 @@
 language: go
 
 go:
-- 1.11.x
-- "1.10"
-- tip
+  - 1.11.x
+  - "1.10"
+  - tip
 
 before_install:
-- go get github.com/mattn/goveralls
-- go get golang.org/x/tools/cmd/cover
+  - go get github.com/golang/dep
+  - go get github.com/mattn/goveralls
+  - go get golang.org/x/tools/cmd/cover
+
+install:
+  - $GOPATH/bin/dep ensure
 
 script:
-- go test -v -covermode=count -coverprofile=coverage.out ./feed
+  - go test -v -covermode=count -coverprofile=coverage.out ./feed
 
 after_success:
-- $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+  - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
