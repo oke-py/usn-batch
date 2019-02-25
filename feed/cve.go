@@ -1,6 +1,7 @@
 package feed
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -18,11 +19,7 @@ func GetPriority(cve string) string {
 	if res.StatusCode != 200 {
 		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
 	}
-	doc, err := goquery.NewDocumentFromReader(res.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return GetPriorityFromDoc(doc)
+	return GetPriorityFromDoc(res.Body)
 }
 
 // GetCveURL is a function to convert CVE number to ubuntu-security URL.
@@ -32,6 +29,10 @@ func GetCveURL(cve string) string {
 }
 
 // GetPriorityFromDoc is a function to extract priority (severity) from document.
-func GetPriorityFromDoc(doc *goquery.Document) string {
+func GetPriorityFromDoc(r io.Reader) string {
+	doc, err := goquery.NewDocumentFromReader(r)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return doc.Find("#body-card .card-body .item .field").First().Next().Find("a").Text()
 }

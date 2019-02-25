@@ -3,8 +3,6 @@ package feed
 import (
 	"os"
 	"testing"
-
-	"github.com/PuerkitoBio/goquery"
 )
 
 func TestGetCveURL(t *testing.T) {
@@ -19,12 +17,7 @@ func TestGetPriorityFromDoc(t *testing.T) {
 	if err != nil {
 		t.Fatal("cannot open file")
 	}
-
-	doc, err := goquery.NewDocumentFromReader(file)
-	if err != nil {
-		t.Fatal("cannot read file")
-	}
-	priority := GetPriorityFromDoc(doc)
+	priority := GetPriorityFromDoc(file)
 	if priority != "Medium" {
 		t.Fatal("failed test")
 	}
