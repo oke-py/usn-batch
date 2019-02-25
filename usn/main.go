@@ -30,6 +30,9 @@ func main() {
 			CVEs: feed.GetCVEs(s),
 		}
 		fmt.Println(notice)
+		for _, cve := range notice.CVEs {
+			fmt.Printf("%v : %v\n", cve, feed.GetPriority(cve))
+		}
 
 		// s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {
 		// 	os := s2.Text()

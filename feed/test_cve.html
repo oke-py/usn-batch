@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CVE-2019-6465 in Ubuntu</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Canonical Ltd, and others" />
+<meta name="description" content="Ubuntu%20CVE%20Entry" />
+<meta name="copyright" content="Canonical Ltd, and others" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/starter-template.css">
+<link rel="stylesheet" href="../css/cve_tracker.css" type="text/css" />
+<link rel="stylesheet" href="../css/cve.css" type="text/css" />
+</head>
+
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark navbar-fixed-top cve-tracker-navbar">
+    <a class="navbar-brand" href="https://launchpad.net/ubuntu-cve-tracker">Ubuntu CVE Tracker</a>
+    <div id="cve-tracker-navbar" class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="..">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="../main.html">Main</a></li>
+        <li class="nav-item"><a class="nav-link" href="../universe.html">Universe</a></li>
+        <li class="nav-item"><a class="nav-link" href="../partner.html">Partner</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+</nav>
+
+<div id="container" class="container">
+
+<div class="starter-template">
+<div class="card" id="body-card">
+
+<h3 class="card-header">CVE-2019-6465</h3>
+<div class="card-body text-left">
+<div class="item"><div class="field">Priority</div> <div><a href="../priority.html">Medium<br /></a></div></div>
+<div class="item"><div class="field">Description</div> <div>Controls for zone transfers may not be properly applied to Dynamically<br />Loadable Zones (DLZs) if the zones are writable<br /></div></div>
+<div class="item"><div class="field">References</div> <div><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-6465">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-6465</a><br /><a href="https://kb.isc.org/docs/cve-2019-6465">https://kb.isc.org/docs/cve-2019-6465</a><br /><a href="https://usn.ubuntu.com/usn/usn-3893-1">https://usn.ubuntu.com/usn/usn-3893-1</a><br /></div></div>
+<div class="item"><div class="field">Assigned-to</div> <div>mdeslaur<br /></div></div>
+<div class="pkg">
+<div class="field">Package</div><div>Source: <a href="../pkg/bind9.html">bind9</a> (<a href="https://launchpad.net/distros/ubuntu/+source/bind9">LP</a> <a href="http://packages.ubuntu.com/search?suite=all&amp;section=all&amp;arch=any&amp;searchon=sourcenames&amp;keywords=bind9">Ubuntu</a> <a href="https://tracker.debian.org/bind9">Debian</a>)</div>
+<table class="table table-responsive">
+<tr><td>Upstream:</td><td><span class="default">needs-triage</span>
+</td></tr>
+<tr><td>Ubuntu 12.04 ESM (Precise Pangolin):</td><td><span class="vuln">needed</span>
+</td></tr>
+<tr><td><a href="https://launchpad.net/ubuntu/trusty/+source/bind9">Ubuntu 14.04 LTS (Trusty Tahr)</a>:</td><td><span class="safe">released</span>
+(1:9.9.5.dfsg-3ubuntu0.19)
+</td></tr>
+<tr><td><a href="https://launchpad.net/ubuntu/xenial/+source/bind9">Ubuntu 16.04 LTS (Xenial Xerus)</a>:</td><td><span class="safe">released</span>
+(1:9.10.3.dfsg.P4-8ubuntu1.12)
+</td></tr>
+<tr><td><a href="https://launchpad.net/ubuntu/bionic/+source/bind9">Ubuntu 18.04 LTS (Bionic Beaver)</a>:</td><td><span class="safe">released</span>
+(1:9.11.3+dfsg-1ubuntu1.5)
+</td></tr>
+<tr><td><a href="https://launchpad.net/ubuntu/cosmic/+source/bind9">Ubuntu 18.10 (Cosmic Cuttlefish)</a>:</td><td><span class="safe">released</span>
+(1:9.11.4+dfsg-3ubuntu5.1)
+</td></tr>
+<tr><td><a href="https://launchpad.net/ubuntu/disco/+source/bind9">Ubuntu 19.04 (Disco Dingo)</a>:</td><td><span class="pending">pending</span>
+(1:9.11.5.P1+dfsg-1ubuntu2)
+</td></tr>
+</table>
+</div>
+<div class="item">
+<div class="field">More Information</div>
+<ul class="links"><li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-6465">Mitre</a></li><li><a href="https://nvd.nist.gov/nvd.cfm?cvename=CVE-2019-6465">NVD</a></li><li><a href="https://launchpad.net/bugs/cve/CVE-2019-6465">Launchpad</a></li><li><a href="https://security-tracker.debian.org/tracker/CVE-2019-6465">Debian</a></li></ul>
+</div>
+<p class="note commit"><a href="https://code.launchpad.net/ubuntu-cve-tracker/+git">Updated</a>: 2019-02-22 12:14:29 UTC  (commit <a href="https://git.launchpad.net/ubuntu-cve-tracker/commit/?id=bd103b565fdd6d328bd49e0a24bd2926d152b510">bd103b565fdd6d328bd49e0a24bd2926d152b510</a>) </p>
+<div id="footer">
+&copy; Canonical Ltd. 2007-2019
+</div><!-- footer -->
+</div><!-- card-body -->
+</div><!-- card -->
+</div><!-- starter-template -->
+</div> <!-- container -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</body>
+</html>
