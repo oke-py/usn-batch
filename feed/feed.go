@@ -2,16 +2,19 @@ package feed
 
 import (
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
 // Notice is a class of each USN
 type Notice struct {
-	ID       string
-	Pkg      string
-	CVEs     []string
-	Priority string
+	ID        string
+	Pkg       string
+	CVEs      []string
+	Priority  string
+	Published time.Time
+	Updated   time.Time
 }
 
 // ExtractUsnTitle is a function to get USN-XXXX-X string.
@@ -40,4 +43,18 @@ func GetCves(entry *goquery.Selection) []string {
 		}
 	})
 	return cves
+}
+
+// GetPublished is a function to get USN published time.
+func GetPublished(entry *goquery.Selection) time.Time {
+	text := entry.Find("published").Text()
+	t, _ := time.Parse("2006-01-02T15:04:05-07:00", text)
+	return t
+}
+
+// GetUpdated is a function to get USN updated time.
+func GetUpdated(entry *goquery.Selection) time.Time {
+	text := entry.Find("updated").Text()
+	t, _ := time.Parse("2006-01-02T15:04:05-07:00", text)
+	return t
 }

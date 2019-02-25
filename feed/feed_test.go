@@ -4,6 +4,7 @@ import (
 	"os"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -59,6 +60,46 @@ func TestGetCves(t *testing.T) {
 	}
 	cves := GetCves(doc.Find("entry"))
 	if !reflect.DeepEqual(cves, []string{"CVE-2018-5744", "CVE-2018-5745", "CVE-2019-6465"}) {
+		t.Fatal("failed test")
+	}
+}
+
+func TestGetPublished(t *testing.T) {
+	file, err := os.Open("./test.xml")
+	if err != nil {
+		t.Fatal("cannot open file")
+	}
+
+	doc, err := goquery.NewDocumentFromReader(file)
+	if err != nil {
+		t.Fatal("cannot read file")
+	}
+
+	published := GetPublished(doc.Find("entry"))
+	loc := time.FixedZone("MST", -7*60*60)
+	expectd := time.Date(2006, time.January, 2, 15, 4, 5, 0, loc)
+
+	if published.Equal(expectd) {
+		t.Fatal("failed test")
+	}
+}
+
+func TestGetUpdated(t *testing.T) {
+	file, err := os.Open("./test.xml")
+	if err != nil {
+		t.Fatal("cannot open file")
+	}
+
+	doc, err := goquery.NewDocumentFromReader(file)
+	if err != nil {
+		t.Fatal("cannot read file")
+	}
+
+	updated := GetUpdated(doc.Find("entry"))
+	loc := time.FixedZone("MST", -7*60*60)
+	expectd := time.Date(2006, time.January, 2, 15, 4, 5, 0, loc)
+
+	if updated.Equal(expectd) {
 		t.Fatal("failed test")
 	}
 }
