@@ -31,8 +31,8 @@ func GetPackageName(entry *goquery.Selection) string {
 	return strings.Split(name, " ")[0]
 }
 
-// GetCVEs is a function to get CVE list related to a specific USN.
-func GetCVEs(entry *goquery.Selection) []string {
+// GetCves is a function to get CVE list related to a specific USN.
+func GetCves(entry *goquery.Selection) []string {
 	cves := []string{}
 	entry.Find("#references").Next().Find("li a").Each(func(_ int, s *goquery.Selection) {
 		if strings.HasPrefix(s.Text(), "CVE-") {

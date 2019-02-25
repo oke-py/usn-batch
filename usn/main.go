@@ -27,7 +27,7 @@ func main() {
 		notice := &feed.Notice{
 			ID:   feed.GetID(s),
 			Pkg:  feed.GetPackageName(s),
-			CVEs: feed.GetCVEs(s),
+			CVEs: feed.GetCves(s),
 		}
 		for _, cve := range notice.CVEs {
 			notice.Priority = feed.GetHigherPriority(notice.Priority, feed.GetPriority(cve))

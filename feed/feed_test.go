@@ -47,7 +47,7 @@ func TestGetPackageName(t *testing.T) {
 	}
 }
 
-func TestGetCVEs(t *testing.T) {
+func TestGetCves(t *testing.T) {
 	file, err := os.Open("./test.xml")
 	if err != nil {
 		t.Fatal("cannot open file")
@@ -57,7 +57,7 @@ func TestGetCVEs(t *testing.T) {
 	if err != nil {
 		t.Fatal("cannot read file")
 	}
-	cves := GetCVEs(doc.Find("entry"))
+	cves := GetCves(doc.Find("entry"))
 	if !reflect.DeepEqual(cves, []string{"CVE-2018-5744", "CVE-2018-5745", "CVE-2019-6465"}) {
 		t.Fatal("failed test")
 	}
