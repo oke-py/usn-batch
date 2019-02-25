@@ -27,7 +27,13 @@ func TestGetHigherPriority(t *testing.T) {
 	if GetHigherPriority("", "Low") != "Low" {
 		t.Fatal("failed test")
 	}
+	if GetHigherPriority("Low", "Low") != "Low" {
+		t.Fatal("failed test")
+	}
 	if GetHigherPriority("Medium", "Low") != "Medium" {
+		t.Fatal("failed test")
+	}
+	if GetHigherPriority("High", "Low") != "High" {
 		t.Fatal("failed test")
 	}
 	if GetHigherPriority("High", "Critical") != "Critical" {
