@@ -17,7 +17,7 @@ func TestGetPriorityFromDoc(t *testing.T) {
 	if err != nil {
 		t.Fatal("cannot open file")
 	}
-	priority := GetPriorityFromDoc(file)
+	priority := GetPriorityFromReader(file)
 	if priority != "Medium" {
 		t.Fatal("failed test")
 	}
