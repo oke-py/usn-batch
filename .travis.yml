@@ -6,7 +6,7 @@ go:
   - tip
 
 before_install:
-  - go get github.com/golang/dep
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
   - go get github.com/mattn/goveralls
   - go get golang.org/x/tools/cmd/cover
 
