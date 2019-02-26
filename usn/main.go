@@ -24,16 +24,7 @@ func main() {
 		log.Fatal(err)
 	}
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
-		notice := &feed.Notice{
-			ID:        feed.GetID(s),
-			Pkg:       feed.GetPackageName(s),
-			CVEs:      feed.GetCves(s),
-			Published: feed.GetPublished(s),
-			Updated:   feed.GetUpdated(s),
-		}
-		for _, cve := range notice.CVEs {
-			notice.Priority = feed.GetHigherPriority(notice.Priority, feed.GetPriority(cve))
-		}
+		notice := feed.GetNotice(s)
 		fmt.Println(notice)
 
 		// s.Find("content dt").Each(func(_ int, s2 *goquery.Selection) {

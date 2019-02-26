@@ -76,10 +76,9 @@ func TestGetPublished(t *testing.T) {
 	}
 
 	published := GetPublished(doc.Find("entry"))
-	loc := time.FixedZone("MST", -7*60*60)
-	expectd := time.Date(2006, time.January, 2, 15, 4, 5, 0, loc)
+	expectd := time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC)
 
-	if published.Equal(expectd) {
+	if !published.Equal(expectd) {
 		t.Fatal("failed test")
 	}
 }
@@ -96,10 +95,50 @@ func TestGetUpdated(t *testing.T) {
 	}
 
 	updated := GetUpdated(doc.Find("entry"))
-	loc := time.FixedZone("MST", -7*60*60)
-	expectd := time.Date(2006, time.January, 2, 15, 4, 5, 0, loc)
+	expectd := time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC)
 
-	if updated.Equal(expectd) {
+	if !updated.Equal(expectd) {
+		t.Fatal("failed test")
+	}
+}
+
+func TestGetNotice(t *testing.T) {
+	file, err := os.Open("./test.xml")
+	if err != nil {
+		t.Fatal("cannot open file")
+	}
+
+	doc, err := goquery.NewDocumentFromReader(file)
+	if err != nil {
+		t.Fatal("cannot read file")
+	}
+
+	expectd := Notice{
+		ID:        "USN-3893-1",
+		Pkg:       "bind9",
+		CVEs:      []string{"CVE-2018-5744", "CVE-2018-5745", "CVE-2019-6465"},
+		Priority:  "Medium",
+		Published: time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC),
+		Updated:   time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC),
+	}
+	actual := GetNotice(doc.Find("entry"))
+
+	if actual.ID != expectd.ID {
+		t.Fatal("failed test")
+	}
+	if actual.Pkg != expectd.Pkg {
+		t.Fatal("failed test")
+	}
+	if !reflect.DeepEqual(actual.CVEs, expectd.CVEs) {
+		t.Fatal("failed test")
+	}
+	if actual.Priority != expectd.Priority {
+		t.Fatal("failed test")
+	}
+	if !actual.Published.Equal(expectd.Published) {
+		t.Fatal("failed test")
+	}
+	if !actual.Updated.Equal(expectd.Updated) {
 		t.Fatal("failed test")
 	}
 }

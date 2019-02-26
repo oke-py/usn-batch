@@ -58,3 +58,18 @@ func GetUpdated(entry *goquery.Selection) time.Time {
 	t, _ := time.Parse("2006-01-02T15:04:05-07:00", text)
 	return t
 }
+
+// GetNotice returns an instance of Notice type.
+func GetNotice(entry *goquery.Selection) Notice {
+	notice := Notice{
+		ID:        GetID(entry),
+		Pkg:       GetPackageName(entry),
+		CVEs:      GetCves(entry),
+		Published: GetPublished(entry),
+		Updated:   GetUpdated(entry),
+	}
+	for _, cve := range notice.CVEs {
+		notice.Priority = GetHigherPriority(notice.Priority, GetPriority(cve))
+	}
+	return notice
+}
