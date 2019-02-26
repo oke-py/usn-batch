@@ -40,10 +40,6 @@ func GetPriorityFromReader(r io.Reader) string {
 // GetHigherPriority returns a higher priority.
 // https://people.canonical.com/~ubuntu-security/cve/priority.html
 func GetHigherPriority(p1 string, p2 string) string {
-	if p1 == "" {
-		return p2
-	}
-
 	if p1 == "Critical" || p2 == "Critical" {
 		return "Critical"
 	}
