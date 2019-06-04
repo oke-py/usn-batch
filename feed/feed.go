@@ -9,12 +9,12 @@ import (
 
 // Notice is a class of each USN
 type Notice struct {
-	ID        string
-	Pkg       string
+	ID        string `dynamo:"usn_id"`
+	Pkg       string `dynamo:"name"`
 	CVEs      []string
-	Priority  string
-	Published time.Time
-	Updated   time.Time
+	Priority  string    `dynamo:"severity"`
+	Published time.Time `dynamo:"published"`
+	Updated   time.Time `dynamo:"updated"`
 }
 
 // ExtractUsnTitle is a function to get USN-XXXX-X string.
