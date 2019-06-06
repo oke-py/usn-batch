@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
 	"github.com/oke-py/usn/feed"
@@ -28,16 +26,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	awsAccessKeyID := os.Getenv("aws_access_key_id")
-	awsSecretAccessKey := os.Getenv("aws_secret_access_key")
-
-	var c = credentials.NewStaticCredentials(awsAccessKeyID, awsSecretAccessKey, "")
-
-	var db = dynamo.New(session.New(), &aws.Config{
-		Credentials: c,
-		Region:      aws.String("ap-northeast-1"),
-	})
-	var table = db.Table("usn")
+	db := dynamo.New(session.New(), &aws.Config{Region: aws.String("ap-northeast-1")})
+	table := db.Table("usn")
 
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
 		notice := feed.GetNotice(s)
