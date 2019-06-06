@@ -1,4 +1,4 @@
-module github.com/oke-py/usn
+module github.com/oke-py/usn-batch
 
 go 1.12
 
