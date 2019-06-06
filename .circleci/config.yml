@@ -6,6 +6,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install test dependencies
+          command: |
+            go get github.com/mattn/goveralls
+            go get golang.org/x/tools/cmd/cover
+      - run:
+          name: unit test
+          command: GO111MODULE=on go test -v -covermode=count -coverprofile=coverage.out ./feed
+      - run:
           name: install node.js
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
