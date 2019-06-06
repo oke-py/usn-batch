@@ -49,12 +49,12 @@ func GetCves(entry *goquery.Selection) []string {
 
 // Affects1604 is a function to evaluate Ubuntu 16.04 LTS is affected.
 func Affects1604(entry *goquery.Selection) bool {
-	return strings.Contains(entry.Text(), "Ubuntu 16.04 LTS")
+	return strings.Contains(entry.Find("ul").Text(), "Ubuntu 16.04 LTS")
 }
 
 // Affects1804 is a function to evaluate Ubuntu 18.04 LTS is affected.
 func Affects1804(entry *goquery.Selection) bool {
-	return strings.Contains(entry.Text(), "Ubuntu 18.04 LTS")
+	return strings.Contains(entry.Find("ul").Text(), "Ubuntu 18.04 LTS")
 }
 
 // GetPublished is a function to get USN published time.
