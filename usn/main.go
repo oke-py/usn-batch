@@ -1,18 +1,21 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
 	"github.com/oke-py/usn-batch/feed"
 )
 
-func main() {
+// Handler is our lambda handler invoked by the `lambda.Start` function call
+func Handler(ctx context.Context) error {
 	res, err := http.Get("https://usn.ubuntu.com/atom.xml")
 	if err != nil {
 		log.Fatal(err)
@@ -45,4 +48,10 @@ func main() {
 		// 	fmt.Printf("%v : %v-%v\n", os, pkg, ver)
 		// })
 	})
+
+	return nil
+}
+
+func main() {
+	lambda.Start(Handler)
 }
