@@ -12,7 +12,10 @@ jobs:
             go get golang.org/x/tools/cmd/cover
       - run:
           name: unit test
-          command: COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN GO111MODULE=on go test -v -covermode=count -coverprofile=coverage.out ./feed
+          command: GO111MODULE=on go test -v -covermode=count -coverprofile=coverage.out ./feed
+      - run:
+          name: upload coverage
+          command: goveralls -coverprofile=coverage.out -service=circle-ci -repotoken $COVERALLS_REPO_TOKEN
       - run:
           name: install node.js
           command: |
