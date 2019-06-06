@@ -1,7 +1,7 @@
-.PHONY: build clean deploy
+.PHONY: build clean deploy gomodgen
 
 build:
-	dep ensure -v
+	export GO111MODULE=on
 	env GOOS=linux go build -ldflags="-s -w" -o bin/usn-batch usn/main.go
 
 clean:
@@ -9,3 +9,7 @@ clean:
 
 deploy: clean build
 	sls deploy --verbose
+
+gomodgen:
+	chmod u+x gomod.sh
+	./gomod.sh
