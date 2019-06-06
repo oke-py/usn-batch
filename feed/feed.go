@@ -9,12 +9,14 @@ import (
 
 // Notice is a class of each USN
 type Notice struct {
-	ID        string `dynamo:"usn_id"`
-	Pkg       string `dynamo:"name"`
-	CVEs      []string
-	Priority  string    `dynamo:"severity"`
-	Published time.Time `dynamo:"published"`
-	Updated   time.Time `dynamo:"updated"`
+	ID          string `dynamo:"usn_id"`
+	Pkg         string `dynamo:"name"`
+	CVEs        []string
+	Priority    string    `dynamo:"severity"`
+	Affects1604 bool      `dynamo:"affects_1604"`
+	Affects1804 bool      `dynamo:"affects_1804"`
+	Published   time.Time `dynamo:"published"`
+	Updated     time.Time `dynamo:"updated"`
 }
 
 // ExtractUsnTitle is a function to get USN-XXXX-X string.
@@ -45,6 +47,16 @@ func GetCves(entry *goquery.Selection) []string {
 	return cves
 }
 
+// Affects1604 is a function to evaluate Ubuntu 16.04 LTS is affected.
+func Affects1604(entry *goquery.Selection) bool {
+	return strings.Contains(entry.Text(), "Ubuntu 16.04 LTS")
+}
+
+// Affects1804 is a function to evaluate Ubuntu 18.04 LTS is affected.
+func Affects1804(entry *goquery.Selection) bool {
+	return strings.Contains(entry.Text(), "Ubuntu 18.04 LTS")
+}
+
 // GetPublished is a function to get USN published time.
 func GetPublished(entry *goquery.Selection) time.Time {
 	text := entry.Find("published").Text()
@@ -62,11 +74,13 @@ func GetUpdated(entry *goquery.Selection) time.Time {
 // GetNotice returns an instance of Notice type.
 func GetNotice(entry *goquery.Selection) Notice {
 	notice := Notice{
-		ID:        GetID(entry),
-		Pkg:       GetPackageName(entry),
-		CVEs:      GetCves(entry),
-		Published: GetPublished(entry),
-		Updated:   GetUpdated(entry),
+		ID:          GetID(entry),
+		Pkg:         GetPackageName(entry),
+		CVEs:        GetCves(entry),
+		Affects1604: Affects1604(entry),
+		Affects1804: Affects1804(entry),
+		Published:   GetPublished(entry),
+		Updated:     GetUpdated(entry),
 	}
 	for _, cve := range notice.CVEs {
 		notice.Priority = GetHigherPriority(notice.Priority, GetPriority(cve))

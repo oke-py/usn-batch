@@ -64,6 +64,38 @@ func TestGetCves(t *testing.T) {
 	}
 }
 
+func TestAffects1604(t *testing.T) {
+	file, err := os.Open("./test.xml")
+	if err != nil {
+		t.Fatal("cannot open file")
+	}
+
+	doc, err := goquery.NewDocumentFromReader(file)
+	if err != nil {
+		t.Fatal("cannot read file")
+	}
+
+	if !Affects1604(doc.Find("entry")) {
+		t.Fatal("failed test")
+	}
+}
+
+func TestAffects1804(t *testing.T) {
+	file, err := os.Open("./test.xml")
+	if err != nil {
+		t.Fatal("cannot open file")
+	}
+
+	doc, err := goquery.NewDocumentFromReader(file)
+	if err != nil {
+		t.Fatal("cannot read file")
+	}
+
+	if !Affects1804(doc.Find("entry")) {
+		t.Fatal("failed test")
+	}
+}
+
 func TestGetPublished(t *testing.T) {
 	file, err := os.Open("./test.xml")
 	if err != nil {
@@ -114,12 +146,14 @@ func TestGetNotice(t *testing.T) {
 	}
 
 	expectd := Notice{
-		ID:        "USN-3893-1",
-		Pkg:       "bind9",
-		CVEs:      []string{"CVE-2018-5744", "CVE-2018-5745", "CVE-2019-6465"},
-		Priority:  "Medium",
-		Published: time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC),
-		Updated:   time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC),
+		ID:          "USN-3893-1",
+		Pkg:         "bind9",
+		CVEs:        []string{"CVE-2018-5744", "CVE-2018-5745", "CVE-2019-6465"},
+		Priority:    "Medium",
+		Affects1604: true,
+		Affects1804: true,
+		Published:   time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC),
+		Updated:     time.Date(2019, time.February, 22, 8, 8, 13, 0, time.UTC),
 	}
 	actual := GetNotice(doc.Find("entry"))
 
@@ -133,6 +167,12 @@ func TestGetNotice(t *testing.T) {
 		t.Fatal("failed test")
 	}
 	if actual.Priority != expectd.Priority {
+		t.Fatal("failed test")
+	}
+	if actual.Affects1604 != expectd.Affects1604 {
+		t.Fatal("failed test")
+	}
+	if actual.Affects1804 != expectd.Affects1804 {
 		t.Fatal("failed test")
 	}
 	if !actual.Published.Equal(expectd.Published) {
