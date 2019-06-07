@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -30,7 +31,7 @@ func Handler(ctx context.Context) error {
 	}
 
 	db := dynamo.New(session.New(), &aws.Config{Region: aws.String("ap-northeast-1")})
-	table := db.Table("usn")
+	table := db.Table(os.Getenv("table"))
 
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
 		notice := feed.GetNotice(s)
