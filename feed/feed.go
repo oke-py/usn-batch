@@ -77,6 +77,7 @@ func GetNotice(entry *goquery.Selection) Notice {
 		ID:          GetID(entry),
 		Pkg:         GetPackageName(entry),
 		CVEs:        GetCves(entry),
+		Priority:    "Unknown",
 		Affects1604: Affects1604(entry),
 		Affects1804: Affects1804(entry),
 		Published:   GetPublished(entry),
