@@ -4,6 +4,12 @@ build:
 	export GO111MODULE=on
 	env GOOS=linux go build -ldflags="-s -w" -o bin/usn-batch usn/main.go
 
+lint:
+	golangci-lint run ./...
+
+test:
+	go test -v -covermode=count ./...
+
 clean:
 	rm -rf ./bin ./vendor Gopkg.lock
 
