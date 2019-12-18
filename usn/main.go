@@ -30,7 +30,11 @@ func Handler(ctx context.Context) error {
 		log.Fatal(err)
 	}
 
-	db := dynamo.New(session.New(), &aws.Config{Region: aws.String("ap-northeast-1")})
+	sess, err := session.NewSession()
+	if err != nil {
+		log.Fatal(err)
+	}
+	db := dynamo.New(sess, &aws.Config{Region: aws.String("ap-northeast-1")})
 	table := db.Table(os.Getenv("table"))
 
 	doc.Find("entry").Each(func(_ int, s *goquery.Selection) {
