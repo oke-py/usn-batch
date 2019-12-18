@@ -1,5 +1,7 @@
 .PHONY: build clean deploy
 
+all: build fix vet fmt test lint tidy
+
 build:
 	export GO111MODULE=on
 	env GOOS=linux go build -ldflags="-s -w" -o bin/usn-batch usn/main.go
@@ -18,3 +20,15 @@ deploy: clean build
 
 deployprod: clean build
 	sls deploy --stage prod --verbose
+
+fix:
+	go fix ./...
+
+fmt:
+	go fmt ./...
+
+tidy:
+	go mod tidy
+
+vet:
+	go vet ./...
